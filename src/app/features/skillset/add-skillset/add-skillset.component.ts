@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { AddSkillsetRequest } from '../models/add-skillset-request.model';
 import { SkillsetService } from '../services/skillset.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-skillset',
@@ -13,9 +14,11 @@ export class AddSkillsetComponent implements OnDestroy {
   model: AddSkillsetRequest;
   private addSkillsetSubscription?: Subscription;
 
-  constructor(private skillsetService: SkillsetService){
+  constructor(
+    private skillsetService: SkillsetService,
+    private router: Router){
     this.model = {
-      skillname: ''
+      skillsetName: ''
     };
   }
 
@@ -25,7 +28,7 @@ export class AddSkillsetComponent implements OnDestroy {
     this.addSkillsetSubscription = this.skillsetService.addSkillset(this.model).subscribe({
       next: (data) => {
         console.log("Successfully added skill: "+data);
-        // his.router.navigateByUrl('/admin/skillset');
+        this.router.navigateByUrl('/admin/skillset');
       },
       error: (err: { message: string; }) => {
         console.error('Error, model wasnt added or data wasnt bound properly'+err.message);

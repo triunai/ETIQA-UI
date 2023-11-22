@@ -1,0 +1,37 @@
+<div class="container">
+
+  <h1 class="mt-3">Edit Skills</h1>
+
+  <ng-container *ngIf="skillset;else notFound">
+
+    <form #form = "ngForm" (ngSubmit)="onFormSubmit()">
+      <div class="mt-2">
+        <div class="mt-3">
+          <label class="form-label" for="skillsetId">Skill Id</label>
+          <input type="text"id="skillsetId" class="form-control" name="skillsetId" value="{{skillset.skillsetId}}" disabled />
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label" for="skillsetName">Skill Name</label>
+          <input type="text"id="skillsetName" class="form-control" name="skillsetName" [(ngModel)]="skillset.skillName" />
+        </div>
+
+        <div class="mt-3 d-flex justify-content-between">
+          <button type="submit" class="btn btn-dark ">Save Changes</button>
+          <button type="button" class="btn btn-danger" (click)="onDelete()">Delete Skillset</button>
+        </div>
+
+      </div>
+    </form>
+
+  </ng-container>
+
+  <ng-template #notFound>
+    <div class="alert alert-warning" role="alert">
+      Skillset not found!
+    </div>
+  </ng-template>
+
+
+</div>
+
