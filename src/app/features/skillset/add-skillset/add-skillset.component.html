@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="mt-3">Add Skills</h1>
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="mt-2">
+      <div class="mt-3">
+        <label class="form-label">Skill Name</label>
+        <input type="text" id="skillsetName" class="form-control" name="categoryName" placeholder="Enter a suitable skill to be added" [(ngModel)]="model.skillname">
+      </div>
+
+      <div class="mt-4">
+          <button type="submit" class="btn btn-dark w-100">Submit</button>
+      </div>
+
+    </div>
+  </form>
+</div>
