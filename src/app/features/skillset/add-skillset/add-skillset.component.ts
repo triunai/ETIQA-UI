@@ -18,7 +18,7 @@ export class AddSkillsetComponent implements OnDestroy {
     private skillsetService: SkillsetService,
     private router: Router){
     this.model = {
-      skillsetName: ''
+      skillName: ''
     };
   }
 

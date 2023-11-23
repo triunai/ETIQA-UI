@@ -53,14 +53,15 @@ export class EditSkillsetComponent implements OnInit, OnDestroy {
 
   onFormSubmit(){
     const updateModel = {
-      skillsetName: this.skillset?.skillName ?? '',
+      skillName: this.skillset?.skillName ?? '',
 
     };
     // transform this object using service
     if(this.id) {
-      this.editSkillsetSubscription = this.skillsetService.updateSkillset(updateModel, this.id).subscribe({
+      this.editSkillsetSubscription = this.skillsetService.updateSkillset(updateModel, this.id).subscribe({ // changed skillsetName to skillName to get rid of this error learn why
         next: (data) =>{
-          this.router.navigateByUrl('/admin/categories');
+          this.router.navigateByUrl('/admin/skillset');
+          console.log("Successfully saved the id: "+data.skillsetId);
         },
         error: (error) => {
           console.error("unable to update data, check params or api: "+error.message)
@@ -74,8 +75,8 @@ export class EditSkillsetComponent implements OnInit, OnDestroy {
     if(this.id){
         this.deleteSkillsetSubscription = this.skillsetService.deleteSkillset(this.id).subscribe({
           next: (responseFromApi) =>{
-            console.log(`This is the deleted category ${responseFromApi.skillsetId}, ${responseFromApi.skillName}`);
-            this.router.navigateByUrl('/admin/categories');
+            console.log(`This is the deleted skillset ${responseFromApi.skillsetId}, ${responseFromApi.skillName}`);
+            this.router.navigateByUrl('/admin/skillset');
           },
           error: (error) =>{
             console.error("Couldnt be deleted, maybe check id: "+error.message)

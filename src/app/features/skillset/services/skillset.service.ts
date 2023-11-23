@@ -36,6 +36,7 @@ export class SkillsetService {
   updateSkillset(model: UpdateSkillsetRequest, id: string):Observable<Skillset>{
     return this.http.put<Skillset>(`${environment.apiBaseUrl}/api/skillset/${id}`, model);
   }
+  
   deleteSkillset(id: string): Observable<Skillset>{
     return this.http.delete<Skillset>(`${environment.apiBaseUrl}/api/skillset/${id}`);
   }

@@ -1,0 +1,48 @@
+<div class="container">
+  <h1 class="mt-3">User List</h1>
+
+  <div class="d-flex justify-content-end mt-3">
+    <a [routerLink]="['/admin/user/add']" class="btn btn-dark">Add Users</a>
+  </div>
+
+<ng-container *ngIf="users$ | async as users">
+  <table class="table table-bordered mt-3">
+    <caption class="text-center">Table on Users</caption>
+    <thead>
+      <tr class="text-center">
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Hobby</th>
+        <th>Register Date</th>
+        <th>Visibility</th>
+        <th>Skillsets</th>
+        <th>Actions</th> <!-- If you have actions like edit/delete -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td class="text-center">{{user.userId}}</td>
+        <td class="text-center">{{user.username}}</td>
+        <td class="text-center">{{user.email}}</td>
+        <td class="text-center">{{user.phoneNumber}}</td>
+        <td class="text-center">{{user.hobby}}</td>
+        <td class="text-center">{{user.registerDate}}</td>
+        <td class="text-center">{{user.isVisible}}</td>
+
+        <td class="text-center">
+          <!-- For skillset -->
+          <span *ngFor="let skillset of user.skillset">
+            <span class="badge bg-info" me-2>{{skillset.skillName}}</span>
+          </span>
+        </td>
+        <td><a [routerLink]="['/admin/user', user.userId]" class="btn btn-dark">Edit</a></td>
+        <!-- Add user.skillsetId here later -->
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+
+</div>
