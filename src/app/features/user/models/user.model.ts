@@ -8,6 +8,7 @@ export interface User {
   hobby: string;
   registerDate: Date;
   isVisible: boolean;
+  profileImageUrl: string;
 
   // linking models together
   skillset: Skillset[];

@@ -33,6 +33,8 @@ export class AddUserComponent implements OnInit{
       hobby: '',
       registerDate: new Date(),
       isVisible: true,
+      profileImageUrl: '',
+
       skillset: [],
     }
   }

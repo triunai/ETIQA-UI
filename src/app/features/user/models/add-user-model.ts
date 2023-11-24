@@ -6,6 +6,8 @@ export interface AddUserModel{
   hobby: string;
   registerDate: Date;
   isVisible: boolean;
+  profileImageUrl: string;
+
 
 
   skillset: string[];

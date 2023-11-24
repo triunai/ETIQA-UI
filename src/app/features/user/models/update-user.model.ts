@@ -6,6 +6,8 @@ export interface UpdateUserModel{
   hobby: string;
   registerDate: Date;
   isVisible: boolean;
+  profileImageUrl: string;
+
 
 
   skillsets: string[];
