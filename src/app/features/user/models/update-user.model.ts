@@ -10,6 +10,6 @@ export interface UpdateUserModel{
 
 
 
-  skillsets: string[];
+  skillset: string[];
   //remmeber the dto model? this reflects that, it was an array of GUID, naturally corresponds to string
 }

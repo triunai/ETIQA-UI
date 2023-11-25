@@ -1,0 +1,5 @@
+.user-image {
+  width: 50px; /* or any appropriate size */
+  height: auto;
+  border-radius: 50%; /* if you want round images */
+}

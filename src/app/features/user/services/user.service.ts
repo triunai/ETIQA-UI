@@ -23,7 +23,6 @@ export class UserService {
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiBaseUrl}/api/user`).pipe(
-      tap((data) => console.log('Successfully fetched all users!!'+data)),
       catchError(err => {
         console.error('Error fetching users!', err.message, 'Status Code:', err.status);
 
