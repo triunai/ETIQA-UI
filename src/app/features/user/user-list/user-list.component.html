@@ -10,7 +10,7 @@
     <caption class="text-center">Table on Users</caption>
     <thead>
       <tr class="text-center">
-        <th>Profile Pic</th> <!-- Added column for profile pic -->
+        <!-- <th>Profile Pic</th> Added column for profile pic -->
         <th>User ID</th>
         <th>Username</th>
         <th>Email</th>
@@ -26,18 +26,18 @@
       <tr *ngFor="let user of users; let i = index" >
         <!-- Profile pic goes here maybe? -->
 
-        <ng-container *ngIf="user.profileImageUrl !=='' " >
+        <!-- <ng-container *ngIf="user.profileImageUrl !=='' " >
           <td class="text-center">
             <img *ngIf="user.profileImageUrl" [src]="user.profileImageUrl" alt="Profile Image">
 
           </td>
-        </ng-container>
+        </ng-container> -->
         <td class="text-center">{{user.userId}}</td>
         <td class="text-center">{{user.username}}</td>
         <td class="text-center">{{user.email}}</td>
         <td class="text-center">{{user.phoneNumber}}</td>
         <td class="text-center">{{user.hobby}}</td>
-        <td class="text-center">{{user.registerDate}}</td>
+        <td class="text-center">{{user.registerDate | date: 'dd-MM-yyyy'}}</td>
         <td class="text-center">{{user.isVisible}}</td>
 
         <td class="text-center">

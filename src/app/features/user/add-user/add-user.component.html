@@ -28,15 +28,10 @@
           />
         </div>
       </ng-container>
-      <div class="d-flex">
-        <input
-          type="text"
-          id="featuredImageUrl"
-          name="featuredImageUrl"
-          class="form-control"
-          [(ngModel)]="model.profileImageUrl"
-        />
-        <!-- <button type="button" class="btn btn-dark d-flex justify-content-center ms" (click)="openImageSelector()">Select Image</button> -->
+      <div class="container d-flex">
+        <input type="text" id="profileImageUrl" name="profileImageUrl" class="form-control" [(ngModel)]="model.profileImageUrl">
+
+        <button type="button" class="btn btn-dark d-flex justify-content-center ms" (click)="openImageSelector()">Select Image</button>
       </div>
     </div>
 
@@ -83,11 +78,9 @@
   </form>
 </div>
 
-<!--
-  <div class="images-container-modal" [ngClass]="{'d-block': imageSelectorVisibilityFlag, 'd-none': !imageSelectorVisibilityFlag}">
+<div class="images-container-modal" [ngClass]="{'d-block': imageSelectorVisibilityFlag, 'd-none': !imageSelectorVisibilityFlag}">
   <button type="button" class="btn btn-dark" style="position: fixed; top: 10px; right: 10px;" (click)="closeImageSelector()">X</button>
   <app-image-selector>
 
   </app-image-selector>
 </div>
- -->

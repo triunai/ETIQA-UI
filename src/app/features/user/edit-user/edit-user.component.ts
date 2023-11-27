@@ -6,6 +6,7 @@ import { Subscription, Observable } from 'rxjs';
 import { Skillset } from '../../skillset/models/skillset.model';
 import { User } from '../models/user.model';
 import { UpdateUserModel } from '../models/update-user.model';
+import { ImageSelectorService } from '../../../shared/components/image-selector/image-selector.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -20,6 +21,7 @@ export class EditUserComponent implements OnInit,OnDestroy {
   getUserSubscription?: Subscription;
   getUser?: Subscription;
   deleteUser?: Subscription;
+  imageSelectSubscription$?: Subscription;
   // image select subscription
 
   id: string | null = null; // Declared here for routing logic
@@ -34,7 +36,8 @@ export class EditUserComponent implements OnInit,OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private skillsetService: SkillsetService
+    private skillsetService: SkillsetService,
+    private imageService: ImageSelectorService,
     // image service goes here
   ){}
   ngOnInit(): void {
@@ -66,7 +69,7 @@ export class EditUserComponent implements OnInit,OnDestroy {
                 return;
               }
               this.model = userResponse;
-              this.selectedSkillsets = userResponse.skillset?.map(skill => skill.skillsetId) || [];
+              this.selectedSkillsets = userResponse.skillset.map(skillset => skillset.skillsetId);
               console.log("these are the fetched skillsets "+this.selectedSkillsets); // Log to check if IDs are correct
 
             },
@@ -78,6 +81,17 @@ export class EditUserComponent implements OnInit,OnDestroy {
       },
       error: () =>{
         alert("unable to return id, check route if it has anything");
+      }
+    });
+    this.imageSelectSubscription$ = this.imageService.onSelectImage().subscribe({
+      next: (response) =>{
+        if(this.model){
+          this.model.profileImageUrl = response.fileUrl;
+          this.imageSelectorVisibilityFlag = false; // closes it for you
+        }
+      },
+      error: (response) =>{
+        console.error("Something worng happened "+response)
       }
     });
   }
@@ -102,6 +116,8 @@ export class EditUserComponent implements OnInit,OnDestroy {
       if(this.id){
         this.editUserSubscription = this.userService.updateUsersById(updateUser, this.id).subscribe({
           next: (data) => {
+            console.log('Selected Skillsets before update:', this.selectedSkillsets); // Log to debug
+
             this.router.navigateByUrl('/admin/user');
           },
           error: (err) => {
@@ -117,6 +133,7 @@ export class EditUserComponent implements OnInit,OnDestroy {
       this.deleteUser = this.userService.deleteUser(this.id).subscribe({
         next: (data) => {
           // maybe remove data return
+          console.log(`This was deleted ${data.userId},${data.username} ,`);
           this.router.navigateByUrl('/admin/user')
         },
         error: (err)=>{
@@ -139,5 +156,6 @@ export class EditUserComponent implements OnInit,OnDestroy {
     this.editUserSubscription?.unsubscribe();
     this.getUser?.unsubscribe();
     this.deleteUser?.unsubscribe();
+    this.imageSelectSubscription$?.unsubscribe();
   }
 }

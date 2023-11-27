@@ -17,6 +17,8 @@ import { UserListComponent } from './features/user/user-list/user-list.component
 import { AddUserComponent } from './features/user/add-user/add-user.component';
 import { EditUserComponent } from './features/user/edit-user/edit-user.component';
 import { UserService } from './features/user/services/user.service';
+import { ImageSelectorComponent } from './shared/components/image-selector/image-selector.component';
+import { HomeComponent } from './features/public/home/home.component';
 
 
 
@@ -30,6 +32,8 @@ import { UserService } from './features/user/services/user.service';
     UserListComponent,
     AddUserComponent,
     EditUserComponent,
+    ImageSelectorComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

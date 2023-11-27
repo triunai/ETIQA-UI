@@ -31,16 +31,16 @@ export class UserService {
     );
   }
 
-  getUsersById(id: string): Observable<User>{
-    return this.http.get<User>(`${environment.apiBaseUrl}/api/user/${id}`);
+  getUsersById(userId: string): Observable<User>{
+    return this.http.get<User>(`${environment.apiBaseUrl}/api/user/${userId}`);
   }
 
-  updateUsersById(model: UpdateUserModel, id: string): Observable<User>{
-    return this.http.put<User>(`${environment.apiBaseUrl}/api/user/${id}`, model);
+  updateUsersById(model: UpdateUserModel, userId: string): Observable<User>{
+    return this.http.put<User>(`${environment.apiBaseUrl}/api/user/${userId}`, model);
   }
 
-  deleteUser(id: string): Observable<User>{
-    return this.http.delete<User>(`${environment.apiBaseUrl}/api/user/${id}`);
+  deleteUser(userId: string): Observable<User>{
+    return this.http.delete<User>(`${environment.apiBaseUrl}/api/user/${userId}`);
   }
 
   // get by url handle?

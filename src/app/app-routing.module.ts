@@ -6,8 +6,11 @@ import { EditSkillsetComponent } from './features/skillset/edit-skillset/edit-sk
 import { UserListComponent } from './features/user/user-list/user-list.component';
 import { AddUserComponent } from './features/user/add-user/add-user.component';
 import { EditUserComponent } from './features/user/edit-user/edit-user.component';
+import { HomeComponent } from './features/public/home/home.component';
 
 const routes: Routes = [
+
+  {path: '', component: HomeComponent},
 
   // for skillset
   {path: 'admin/skillset', component: SkillsetListComponent},

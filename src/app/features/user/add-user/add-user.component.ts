@@ -1,28 +1,31 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddUserModel } from '../models/add-user-model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Skillset } from '../../skillset/models/skillset.model';
 import { SkillsetService } from '../../skillset/services/skillset.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { ImageSelectorService } from 'src/app/shared/components/image-selector/image-selector.service';
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit{
+export class AddUserComponent implements OnInit, OnDestroy{
 
 
   model: AddUserModel;
   skillset$?: Observable<Skillset[]>;
-
+  imageSelectorVisibilityFlag?: boolean = false;
+  imageSelectSubscription$?: Subscription;
   // image selector stuff goes here
 
   constructor(
     private skillsetService: SkillsetService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private imageService: ImageSelectorService
   ) {
 
 
@@ -41,6 +44,18 @@ export class AddUserComponent implements OnInit{
 
   ngOnInit(): void {
     this.fetchSkillsets();
+    this.imageSelectSubscription$ = this.imageService.onSelectImage().subscribe({
+      // Do something with the new image
+      next: (response) => {
+        if(this.model){
+          this.model.profileImageUrl = response.fileUrl;
+          this.closeImageSelector(); // closes it for you
+        }
+      },
+      error: (err) => {
+        console.error("Something worng happened "+err)
+      }
+    });
   }
   onFormSubmit(){
     console.log(this.model); // <-- to check two way data binding
@@ -62,4 +77,14 @@ export class AddUserComponent implements OnInit{
     this.skillset$ = this.skillsetService.getAllSkillsets();
   }
 
+  openImageSelector(){
+    this.imageSelectorVisibilityFlag = true;
+  }
+
+  closeImageSelector(){
+    this.imageSelectorVisibilityFlag = false;
+  }
+  ngOnDestroy(): void {
+    this.imageSelectSubscription$?.unsubscribe();
+  }
 }
