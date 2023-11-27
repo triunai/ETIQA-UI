@@ -28,14 +28,63 @@ Welcome to the ETIQA-UI, the frontend interface for the ETIQA Freelancer Directo
 - **Configure API Connection**: Ensure it points to your ETIQA-API instance.
 - **Launch the Application**: Use `ng serve` to start the development server.
 
-## 🌈 Future Enhancements
-- **Advanced Search Features**: Implementing more robust search capabilities.
-- **User Authentication**: Adding login functionality for security.
-- **Interactive Dashboards**: For better visualization of freelancer data.
-- **Internationalization**: Supporting multiple languages.
+# ETIQA-UI Angular Application Overview
 
-## 📝 Task Breakdown
-- **Frontend Development**: Building UI components and services.
-- **Integration with API**: Ensuring seamless data flow between frontend and backend.
-- **Design and Usability Testing**: Continuously refining user experience.
-- **Documentation and Deployment**: Preparing for production and user adoption.
+## 📁 Core Components
+
+### Navbar Component
+- **Location:** `src/app/core/components/navbar`
+- **Description:** Provides the navigation bar for the application.
+
+## 🌟 Feature: Skillset
+
+### Add Skillset Component
+- **Location:** `src/app/features/skillset/add-skillset`
+- **Description:** Allows users to add new skillsets.
+
+### Edit Skillset Component
+- **Location:** `src/app/features/skillset/edit-skillset`
+- **Description:** Enables editing of existing skillsets.
+
+### Skillset List Component
+- **Location:** `src/app/features/skillset/skillset-list`
+- **Description:** Displays a list of skillsets.
+
+### Skillset Service
+- **Location:** `src/app/features/skillset/services/skillset.service.ts`
+- **Description:** Manages skillset-related operations.
+
+## 🌟 Feature: User Management
+
+### Add User Component
+- **Location:** `src/app/features/user/add-user`
+- **Description:** Facilitates the addition of new users.
+
+### Edit User Component
+- **Location:** `src/app/features/user/edit-user`
+- **Description:** Allows for editing user details.
+
+### User List Component
+- **Location:** `src/app/features/user/user-list`
+- **Description:** Shows a list of users.
+
+### User Service
+- **Location:** `src/app/features/user/services/user.service.ts`
+- **Description:** Handles user-related functionalities.
+
+## 📁 Shared Components
+
+### Image Selector Component
+- **Location:** `src/app/shared/components/image-selector`
+- **Description:** Provides functionality for selecting images.
+
+## 📚 Additional Resources
+
+### Environment Configuration
+- **Location:** `src/environments/environment.ts`
+
+### Main Application Setup
+- **Location:** `src/main.ts`
+
+### Application Styling
+- **Location:** `src/styles.css`
